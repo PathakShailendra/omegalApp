@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Add route for root path
+
 router.get('/', (req, res) => {
   res.render('index');
 });
