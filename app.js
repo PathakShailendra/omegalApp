@@ -19,10 +19,14 @@ io.on('connection', (socket) => {
             socket.join(roomname);
             partner.join(roomname);
 
-            io.to(roomname).emit('joined');
+            io.to(roomname).emit('joined', roomname);
         } else {
             waitingusers.push(socket);
         }
+    })
+
+    socket.on('message', (data) => {
+        socket.broadcast.to(data.room).emit('message', data.message);
     })
 
     socket.on('disconnect', () => {
